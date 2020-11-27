@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
+    <title>Registration</title>
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed"
+                    data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                    aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span> <span
+                    class="icon-bar"></span> <span class="icon-bar"></span> <span
+                    class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#" th:href="@{/}">Login</a>
+        </div>
+    </div>
+</nav>
+<br>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div th:if="${param.success}">
+                <div class="alert alert-info">You've successfully registered
+                    </div>
+            </div>
+            <h1>Registration</h1>
+            <form th:action="@{/registration}" th:object="${user}" method="post" id="completeform">
+                <p class="error-message" th:if="${#fields.hasGlobalErrors()}"
+                   th:each="error : ${#fields.errors('global')}" th:text="${error}">Validation
+                    error</p>
+                <div class="form-group"
+                     th:classappend="${#fields.hasErrors('firstName')}? 'has-error':''">
+                    <label for="firstName" class="control-label">First name</label> <input
+                        id="uname" class="form-control" th:field="*{firstName}" />
+                    <p class="error-message"
+                       th:each="error: ${#fields.errors('firstName')}"
+                       th:text="${error}">Validation error</p>
+                </div>
+                
+                  
+                
+                <!---------------------  Last Name ------------------------------------------>   
+                
+                <div class="form-group"
+                     th:classappend="${#fields.hasErrors('lastName')}? 'has-error':''">
+                    <label for="lastName" class="control-label">Last name</label> <input
+                        id="lastName" class="form-control" th:field="*{lastName}" />
+                    <p class="error-message"
+                       th:each="error : ${#fields.errors('lastName')}"
+                       th:text="${error}">Validation error</p>
+                </div>
+                
+                
+                
+                <!---------------------  Mobile ------------------------------------------> 
+                
+                  <div class="form-group"
+                     th:classappend="${#fields.hasErrors('mobile')}? 'has-error':''">
+                    <label for="mobile" class="control-label">mobile</label> <input
+                        id="mobile" class="form-control" th:field="*{mobile}" />
+                    <p class="error-message"
+                       th:each="error : ${#fields.errors('mobile')}"
+                       th:text="${error}">Validation error</p>
+                </div>
+           
+                
+                
+                
+          <!---------------------  Email ------------------------------------------>   
+            
+                <div class="form-group"
+                     th:classappend="${#fields.hasErrors('email')}? 'has-error':''">
+                    <label for="email" class="control-label">E-mail</label> <input
+                        id="email" class="form-control" th:field="*{email}" />
+                    <p class="error-message"
+                       th:each="error : ${#fields.errors('email')}" 
+                       th:text="${error}">Validation error</p> 
+                     </div>   
+               
+                
+                
+                
+                
+                <!---------------------  Password ------------------------------------------>
+                <div class="form-group"
+                     th:classappend="${#fields.hasErrors('password')}? 'has-error':''">
+                    <label for="password" class="control-label">Password</label> <input
+                        id="pass" class="form-control" type="password"
+                        th:field="*{password}" />
+                    <p class="error-message"
+                       th:each="error : ${#fields.errors('password')}"
+                       th:text="${error}">Validation error</p>
+                </div>
+                
+                
+                 
+                 <!---------------------  Destination------------------------------------------> 
+               
+                <div class="form-group"
+                     th:classappend="${#fields.hasErrors('destination')}? 'has-error':''">
+                    <label for="destination" class="control-label" >Destination</label>
+                    <select class="form-control" th:field="*{destination}"  id="destination">
+                    <option th:value="''" th:text="--SELECT--"></option>
+    				<option th:value="'Bhitarkanika'" th:text="Bhitarkanika"></option>
+    				<option th:value="'Simlipal'" th:text="Simlipal_Camp"></option>
+    				 <option th:value="'Satkosia'" th:text="Satkosia"></option>
+    				 <option th:value="'Satkosia'" th:text="Satkosia"></option>
+    				 <option th:value="'Debrigard'" th:text="Debrigard"></option>
+    				 <option th:value="'Chilika'" th:text="Chilika"></option>
+    				 <option th:value="'Nuanai'" th:text="Nuanai"></option>
+    				 <option th:value="'Rissia'" th:text="Rissia"></option>
+    				 <option th:value="'Bichitrapur'" th:text="Bichitrapur"></option>
+    				 <option th:value="'Phulbani'" th:text="Phulbani"></option>
+    				 <option th:value="'Chandaka'" th:text="Chandaka"></option>
+    				 <option th:value="'Khandaghar'" th:text="Khandaghar"></option>
+    				 <option th:value="'Chandipur'" th:text="Chandipur"></option>
+    				 <option th:value="'Chitrakhonda'" th:text="Chitrakhonda"></option>
+					</select>
+					                  
+					<p class="error-message"
+                       th:each="error : ${#fields.errors('destination')}"
+                       th:text="${error}">Validation error</p>
+                </div>
+                <!-------------------------- Location ------------------------------------->
+                
+                 <div class="form-group"
+                     th:classappend="${#fields.hasErrors('location')}? 'has-error':''">
+                    <label  for="location" class="control-label"  >Location</label>  
+                    <select class="form-control" th:field="*{location}"  id="location">
+                      <option th:value="''" th:text="--SELECT--"></option>
+   					 <option th:value="'Bhubaneswar'" th:text="Bhubaneswar"></option>
+    				 <option th:value="'Sambalpur'" th:text="Sambalpur"></option>
+    				 <option th:value="'Bolangir'" th:text="Bolangir"></option>
+    				 <option th:value="'Kendrapada'" th:text="Kendrapada"></option>
+    				 <option th:value="'Jajpur'" th:text="Jajpur"></option>
+    				 <option th:value="'Cuttack'" th:text="Cuttack"></option>
+    				 <option th:value="'Paradeep'" th:text="Paradeep"></option>
+    				 <option th:value="'Balesore'" th:text="Balesore"></option>
+					</select>
+                    <p class="error-message"
+                       th:each="error : ${#fields.errors('location')}"
+                       th:text="${error}">Validation error</p>
+                </div>
+                
+                <!----- -------------------- Accomodation-------------------------------------->
+                
+                 
+                 <div class="form-group"
+                     th:classappend="${#fields.hasErrors('accomodation')}? 'has-error':''">
+                    <label for="accomodation" class="control-label">Accomodation</label> 
+                    <select class="form-control" th:field="*{accomodation}" id="accomodation">
+                     <option th:value="''" th:text="--SELECT--"></option>
+   					 <option th:value="'Single_Bed'" th:text="Single_Bed"></option>
+    				 <option th:value="'Double_Bed'" th:text="Double_Bed"></option>
+    				 <option th:value="'Two_double_Bed'" th:text="Two_double_Bed"></option>
+					</select>
+                    <p class="error-message"
+                       th:each="error : ${#fields.errors('accomodation')}"
+                       th:text="${error}">Validation error</p>
+                </div>
+                
+                
+                <!------------------------- No of person -------------------------------------->
+                 <div class="form-group"
+                     th:classappend="${#fields.hasErrors('person')}? 'has-error':''">
+                    <label for="person" class="control-label"  >No. Of Person</label>  
+                    <select class="form-control" th:field="*{person}"  id="person">
+                      <option th:value="''" th:text="--SELECT--"></option>
+   					 <option th:value="'1'" th:text="1"></option>
+    				 <option th:value="'2'" th:text="2"></option>
+    				 <option th:value="'3'" th:text="3"></option>
+    				 <option th:value="'4'" th:text="4"></option>
+    				 <option th:value="'5'" th:text="5"></option>
+    				 <option th:value="'6'" th:text="6"></option>
+    				 <option th:value="'7'" th:text="7"></option>
+    				 <option th:value="'8'" th:text="8"></option>
+					</select>
+                    <p class="error-message"
+                       th:each="error : ${#fields.errors('person')}"
+                       th:text="${error}">Validation error</p>
+                </div>
+                
+                  <!----- -------------------- Check In-------------------------------------->
+
+					<div class="form-group"
+                     th:classappend="${#fields.hasErrors('checkin')}? 'has-error':''">
+                    <label for="checkin" class="control-label">Checkin</label> 
+                    <input
+                       type="date" id="checkin" class="form-control" th:field="*{checkin}" />
+                    <p class="error-message"
+                       th:each="error : ${#fields.errors('checkin')}" 
+                       th:text="${error}">Validation error</p> 
+                     </div> 			
+					
+					
+                  <!----- -------------------- Check Out-------------------------------------->
+
+					<div class="form-group"
+                     th:classappend="${#fields.hasErrors('checkout')}? 'has-error':''">
+                    <label for="checkout" class="control-label">Checkout</label> 
+                    <input
+                       type="date" id="checkout" class="form-control" th:field="*{checkout}" />
+                    <p class="error-message"
+                       th:each="error : ${#fields.errors('checkout')}" 
+                       th:text="${error}">Validation error</p> 
+                     </div> 	
+					
+                
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success" onclick="allocate()">Register</button>
+                    <span>Already registered? <a href="/" th:href="@{/login}">Login
+								here</a></span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+    <script type="text/javascript"
+            th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
+    <script type="text/javascript"
+            th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>           
+            
+</body>
+</html>
+
+<script>
+function allocate()
+{
+//name
+var username=document.getElementById("uname").value;
+if(username.length==0)
+    {
+            alert("UserName cant be Empty");
+            return false;
+    }
+
+var letters = /^[a-zA-Z\s-, ]+$/;
+if(!uname.value.match(letters))
+{
+    alert('name can only have alphabets');
+    return false;
+}
+
+
+//number
+var phoneNum = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/; 
+if(!mobile.value.match(phoneNum))
+    {
+	  alert('Mobile number is not valid');
+	  return false;
+    }
+    
+//email    
+var bemail=document.getElementById("email").value;
+
+
+if(bemail.length==0)
+{​​​​​​​
+alert("Email is required");
+return false;
+
+
+}​​​​​​​
+
+if(!bemail.match(/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{​​​​​​​2,4}​​​​​​​)$/))
+{​​​​​​​
+alert("Enter valid Email");
+return false;
+
+
+}​​​​​​​
+
+/* //password
+var password=document.getElementById("pass").value;
+
+if(password.length==0)
+{
+alert("Password is required");
+return false;
+}
+
+var passw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;  
+if (!pass.value.match(passw)) 
+    {  
+   alert('Password is invalid')  
+   return false;
+} */
+  
+//destination
+var dest = document.getElementById("destination");
+if (dest.value == "") 
+    {
+    //If the "Please Select" option is selected display error.
+    alert("Please select a destination!");
+    return false;
+    }
+
+//location
+var loc = document.getElementById("location");
+if (loc.value == "") 
+    {
+    //If the "Please Select" option is selected display error.
+    alert("Please select a location!");
+    return false;
+    }
+
+//accomodation
+var acc = document.getElementById("accomodation");
+if (acc.value == "") 
+    {
+    //If the "Please Select" option is selected display error.
+    alert("Please select an accomodation!");
+    return false;
+    }
+
+//checkin
+var userdate = new Date(document.getElementById("checkin").value).toJSON().slice(0,10);
+var today = new Date().toJSON().slice(0,10);
+if(userdate < today){
+  alert('enter correct date to checkin');
+  return false;
+}
+
+
+//checkout
+var userdate1 = new Date(document.getElementById("checkin").value).toJSON().slice(0,10);
+var userdate2 = new Date(document.getElementById("checkout").value).toJSON().slice(0,10);
+if(userdate1 > userdate2)
+    {
+			alert('enter correct date to checkout');
+			return false;
+    } 
+
+else
+{
+  document.getElementById("completeform").submit();
+   return true;
+}
+}
+</script>
+
+
