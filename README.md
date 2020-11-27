@@ -4,4 +4,4 @@ I personally use SQL yog and recommand it
 
 i have also uploaded the files of my sql you can import it
 
-Also check the jsp page if u want to modify
+Also check the HTML page if u want to modify
